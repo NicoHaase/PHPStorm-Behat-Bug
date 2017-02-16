@@ -1,0 +1,26 @@
+default:
+#  paths:
+#    features: '../app/Resources/test/behat/features/combined/'
+#    bootstrap: '../tests/Behat/Bootstrap'
+  gherkin:
+    filters:
+      tags: "~@donotexecute"
+    cache: ~
+
+  extensions:
+    Behat\MinkExtension:
+      selenium2:
+        wd_host: "selenium.docker:80/wd/hub"
+        capabilities: { "browser": "firefox", "version": "ANY", "deviceType": "ANY", "platform": "LINUX" }
+      default_session: selenium2
+      browser_name: firefox
+      base_url: http://www.google.de
+  formatters:
+    junit:
+      output_path: ../reports/phpunit
+    pretty:
+
+  suites:
+    default:
+      contexts:
+        - Behat\MinkExtension\Context\MinkContext
